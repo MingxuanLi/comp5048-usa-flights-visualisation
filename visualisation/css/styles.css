@@ -1,0 +1,43 @@
+/* On mouse hover, lighten state color */
+path:hover {
+    fill-opacity: .7;
+}
+
+/* Style for Custom Tooltip */
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: 14px;
+    padding: 2px;
+    font: 12px sans-serif;
+    color: white;
+    background: black;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Legend Font Style */
+body {
+    font: 11px sans-serif;
+}
+
+/* Legend Position Style */
+.legend {
+    position:absolute;
+    left:800px;
+    top:350px;
+}
+
+path.arc {
+    stroke-width: 2px;
+    /*stroke: #838c89;*/
+    pointer-events: none;
+    fill: none;
+}
+
+.title{
+    margin-top: 20px;
+    text-align:center;
+}
