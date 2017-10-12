@@ -192,6 +192,8 @@ var drawFlights = function(flights, origin) {
     if(analysis_type){
         var valMax = _.get(_.maxBy(flights, analysis_type), analysis_type);
         var valMin = _.get(_.minBy(flights, analysis_type), analysis_type);
+        var sortedFlights = _.sortBy(flights, analysis_type);
+        console.log(sortedFlights);
     }
 
     svg.selectAll("path.arc")
@@ -203,7 +205,9 @@ var drawFlights = function(flights, origin) {
         })
         .style("stroke", function(d){
             var value = _.get(d, analysis_type);
-            if(value){
+            if(value && sortedFlights){
+                var index = _.findIndex(sortedFlights, {origin: d.origin, destination: d.destination});
+                // var z = Math.floor((index / flights.length) * colorRanges.length);
                 var z = Math.floor(((value - valMin) / (valMax - valMin + 1)) * colorRanges.length);
                 return color(z);
             }else{
