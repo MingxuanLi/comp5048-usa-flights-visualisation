@@ -6,6 +6,7 @@
   "scripts": {
     "start": "./node_modules/http-server/bin/http-server . -p 8080",
     "analysis": "node ./src/index.js",
+    "calendar-analysis": "node ./src/calendar.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +23,7 @@
     "fs-extra": "^4.0.2",
     "http-server": "^0.10.0",
     "lodash": "^4.17.4",
+    "moment": "^2.19.1",
     "mysql": "^2.14.1"
   }
 }

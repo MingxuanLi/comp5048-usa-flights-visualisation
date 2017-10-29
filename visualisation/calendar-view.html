@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script type="text/javascript" src="js/d3/d3.min.js"></script>
+    <script type="text/javascript" src="js/lodash/lodash.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+</head>
+<body>
+    <h2 class="title">US Selected Airports - Flights Performance 2000 - 2008</h2>
+    <div class="container" style="margin-top: 50px">
+        <div class="row">
+            <div class="col-6">
+                <label>select airport</label>
+                <select class="select-airport">
+                    <option value="" disabled selected>-</option>
+                    <option value="MIA">Miami International</option>
+                    <option value="SFO">San Francisco International</option>
+                    <option value="ATL">William B Hartsfield-Atlanta Intl</option>
+                    <option value="JFK">John F Kennedy Intl</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label>select analysis type</label>
+                <select class="select-type">
+                    <option value="" disabled selected>-</option>
+                    <option value="percent_of_arr_delay">percentage of flights with arrival delay</option>
+                    <option value="percent_of_dep_delay">percentage of flights with departure delay</option>
+                    <option value="avg_arr_delay">avg arrival delay</option>
+                    <option value="avg_dep_delay">avg departure delay</option>
+                    <option value="avg_carrier_delay">avg carrier delay</option>
+                    <option value="avg_weather_delay">avg weather delay</option>
+                    <option value="avg_nas_delay">avg nas delay</option>
+                    <option value="avg_security_delay">avg security delay</option>
+                    <option value="avg_late_aircraft_delay">avg late aircraft delay</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="svg"></div>
+    <script type="text/javascript" src="js/calendar/index.js"></script>
+</body>
