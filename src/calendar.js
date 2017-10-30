@@ -11,12 +11,7 @@ const selectedAirports = [
     'ATL',
     'JFK'
 ];
-const selectedAirport = selectedAirports[0];
-
-let years = [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008];
-let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-years = [2000];
-months = [1];
+const selectedAirport = selectedAirports[3];
 
 let pool;
 
@@ -37,14 +32,37 @@ const disconnectDbPool = () => {
 const queryAndGenerate = async () => {
     connectDbPool();
 
+    let airportFlights = [];
+
     let flightsFromOrigin = await queryflightsFromAirport(selectedAirport);
-    console.log(flightsFromOrigin.length);
-
     let flightsToOrigin = await queryflightsToAirport(selectedAirport);
-    console.log(flightsToOrigin.length);
-
     let flights = await queryflightsRelateToAirport(selectedAirport);
-    console.log(flights.length);
+    _.each(flightsFromOrigin, function(flightFromOrigin){
+        let year = flightFromOrigin.year;
+        let month = flightFromOrigin.month;
+        let day_of_month = flightFromOrigin.day_of_month;
+        let flightToOrigin = _.find(flightsToOrigin, {year: year, month: month, day_of_month: day_of_month});
+        let flight = _.find(flights, {year: year, month: month, day_of_month: day_of_month});
+        airportFlights.push({
+            airport: flightFromOrigin.origin,
+            year: year,
+            month: month,
+            day_of_month: day_of_month,
+            num_of_out_flights: flightFromOrigin.num_of_flights,
+            num_of_out_delayed_flights: flightFromOrigin.num_of_delayed_flights,
+            num_of_in_flights: flightToOrigin.num_of_flights,
+            num_of_in_delayed_flights: flightToOrigin.num_of_delayed_flights,
+            avg_dep_delay: flightFromOrigin.avg_dep_delay,
+            avg_arr_delay: flightToOrigin.avg_arr_delay,
+            avg_carrier_delay: flight.avg_carrier_delay,
+            avg_weather_delay: flight.avg_weather_delay,
+            avg_nas_delay: flight.avg_nas_delay,
+            avg_security_delay: flight.avg_security_delay,
+            avg_late_aircraft_delay: flight.avg_late_aircraft_delay
+        });
+    });
+
+    fs.writeJsonSync('visualisation/dataset/performance/airports_' + selectedAirport + '.json', airportFlights);
 
     disconnectDbPool();
 };
