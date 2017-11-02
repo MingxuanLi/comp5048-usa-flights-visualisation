@@ -16,9 +16,11 @@ https://bl.ocks.org/mbostock/4063318
 ### Steps to run
 
 Install dependencies
+
 npm install
 
 To start visualisation
+
 npm start
 
 To run the sql queries and generate dataset
